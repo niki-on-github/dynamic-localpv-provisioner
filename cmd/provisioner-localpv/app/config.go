@@ -299,7 +299,7 @@ func (c *VolumeConfig) GetPath() (string, error) {
 	//	pvRelPath = c.pvName
 	//}
 
-	pvRelPath := c.pvName
+	pvRelPath := c.pvcName
 	//path := filepath.Join(basePath, pvRelPath)
 
 	return hostpath.NewBuilder().
