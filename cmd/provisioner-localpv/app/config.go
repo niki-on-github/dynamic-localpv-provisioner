@@ -198,6 +198,7 @@ func (p *Provisioner) GetVolumeConfig(ctx context.Context, pvName string, pvc *c
 	c := &VolumeConfig{
 		pvName:     pvName,
 		pvcName:    pvc.ObjectMeta.Name,
+		pvcNamespace: pvc.ObjectMeta.Namespace,
 		scName:     *scName,
 		options:    pvConfigMap,
 		configData: dataPvConfigMap,
@@ -299,7 +300,7 @@ func (c *VolumeConfig) GetPath() (string, error) {
 	//	pvRelPath = c.pvName
 	//}
 
-	pvRelPath := c.pvcName
+	pvRelPath := c.pvcNamespace + c.pvcName
 	//path := filepath.Join(basePath, pvRelPath)
 
 	return hostpath.NewBuilder().
